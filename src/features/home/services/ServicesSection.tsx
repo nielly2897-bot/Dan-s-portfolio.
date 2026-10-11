@@ -43,6 +43,7 @@ export function ServicesSection() {
               className="sv__card"
               data-card
             >
+              {service.thumbnail ? <span className="sv__visual" aria-hidden><img src={service.thumbnail.src} alt="" width={service.thumbnail.width} height={service.thumbnail.height} loading="lazy" decoding="async" /></span> : null}
               <span className="sv__top">
                 <span className="sv__index">
                   {pad(i + 1)}

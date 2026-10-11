@@ -1,67 +1,45 @@
 import type { Service } from './schema'
-import { tools } from './tools'
 
 export const servicesPage = {
   eyebrow: 'Services',
-  title: 'Everything you offer, in one line each.',
-  lede: 'PLACEHOLDER - tell me what to put here: one sentence on what you offer and how a client can combine it.',
+  title: 'Automation, websites, and content that work together.',
+  lede: 'Choose focused support or connect all three services into a workflow built around your goals.',
 }
 
-/**
- * The Home Services section: a stack of cards dealt onto a pile as the page scrolls. The display line
- * is the thin + bold pair below.
- */
 export const servicesSection = {
   eyebrow: servicesPage.eyebrow,
-  titleThin: 'Pick one',
-  titleBold: 'or stack a few.',
+  titleThin: 'Less busywork.',
+  titleBold: 'More momentum.',
   explore: 'Explore',
-  /** The Work chapter each card opens, by service id (a chapter id from home.ts). */
-  work: { 'service-1': 'screens', 'service-2': 'featured', 'service-3': 'websites', 'service-4': 'websites', 'service-5': 'apps' } as Record<string, string>,
+  work: { 'service-1': 'screens', 'service-2': 'websites', 'service-3': 'process' } as Record<string, string>,
 }
-
-const SUMMARY = 'PLACEHOLDER - tell me what to put here: the benefit of this service in one line.'
-const BULLET = 'PLACEHOLDER - tell me what to put here: one short benefit'
 
 export const services: Service[] = [
   {
     id: 'service-1',
-    title: 'Service One',
-    summary: SUMMARY,
-    outcome: 'Outcome One',
-    bullets: [BULLET, BULLET, BULLET],
-    tools: [tools.toolA, tools.toolB, tools.toolC],
+    title: 'Automation',
+    thumbnail: { src: '/images/portfolio/lead.png', alt: 'Daniel’s GoHighLevel lead acquisition workflow', width: 1334, height: 815 },
+    summary: 'Keep leads moving in GoHighLevel with connected workflows and consistent follow-up.',
+    outcome: 'Connected follow-up',
+    bullets: ['Lead acquisition workflows', 'Email nurturing campaigns', 'Automation maintenance and troubleshooting'],
+    tools: [],
   },
   {
     id: 'service-2',
-    title: 'Service Two',
-    summary: SUMMARY,
-    outcome: 'Outcome Two',
-    bullets: [BULLET, BULLET, BULLET],
-    tools: [tools.toolD, tools.toolE, tools.toolF],
+    title: 'Website Development',
+    thumbnail: { src: '/images/portfolio/jumbo-website.png', alt: 'Daniel’s Jumbo Loan Experts website work', width: 1794, height: 8509 },
+    summary: 'Build a clear, purposeful online home for your business or community.',
+    outcome: 'A stronger presence',
+    bullets: ['Custom websites built from scratch', 'Website rebuilding and redesign', 'Ongoing website maintenance'],
+    tools: [],
   },
   {
     id: 'service-3',
-    title: 'Service Three',
-    summary: SUMMARY,
-    outcome: 'Outcome Three',
-    bullets: [BULLET, BULLET, BULLET],
-    tools: [tools.toolG, tools.toolH, tools.toolI],
-  },
-  {
-    id: 'service-4',
-    title: 'Service Four',
-    summary: SUMMARY,
-    outcome: 'Outcome Four',
-    bullets: [BULLET, BULLET, BULLET],
-    tools: [tools.toolJ, tools.toolK, tools.toolL],
-  },
-  {
-    id: 'service-5',
-    title: 'Service Five',
-    summary: SUMMARY,
-    outcome: 'Outcome Five',
-    bullets: [BULLET, BULLET, BULLET],
-    tools: [tools.toolA, tools.toolF, tools.toolK],
+    title: 'Content Repurposing',
+    thumbnail: { src: '/images/portfolio/nicole-wide.png', alt: 'Scale Up Your Business podcast episode artwork created by Daniel', width: 1200, height: 628 },
+    summary: 'Turn recorded videos into content that reaches people across channels.',
+    outcome: 'One recording, more reach',
+    bullets: ['Video recording, graphic design, and short-form video content', 'Email campaigns, newsletters, and YouTube descriptions', 'Captions for LinkedIn, Facebook, Instagram, and TikTok'],
+    tools: [],
   },
 ]

@@ -24,6 +24,11 @@ export function contactText(m: ContactMessage): string {
  * the visitor only presses send. The message is capped at 1500 characters in the form, which keeps the
  * encoded URL inside what desktop mail clients accept. Swapped for a POST once the form gets a backend.
  */
+/** Prepares an inquiry in WhatsApp; the visitor reviews and sends it there. */
 export function contactMailto(m: ContactMessage): string {
   return `mailto:${site.email}?subject=${encodeURIComponent(site.emailSubject)}&body=${encodeURIComponent(contactText(m))}`
+}
+
+export function contactWhatsApp(m: ContactMessage): string {
+  return `${site.whatsappUrl}?text=${encodeURIComponent(contactText(m))}`
 }

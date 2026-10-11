@@ -141,6 +141,13 @@
   line-height: 1.6;
 }
 .ct-form,
+.ct-booking {margin-top:48px;scroll-margin-top:130px;padding:24px;border:1px solid var(--line);border-radius:20px;background:var(--surface);}
+.ct-booking h2 {font-size:26px;margin-bottom:12px;}
+.ct-booking p {color:var(--ink-2);margin-bottom:20px;}
+.ct-booking iframe {width:100%;min-height:800px;border:0;overflow:hidden;display:block;background:white;border-radius:12px;}
+.ct-booking .btn-line {margin-top:16px;max-width:100%;white-space:normal;font-size:13px;overflow-wrap:anywhere;}
+.ct-actions {flex-wrap:wrap;}
+.ct-hint,.ct-err {flex-basis:100%;}
 .ct-done {
   margin-top: 28px;
 }

@@ -30,30 +30,39 @@ function ProofLedger({ nested }: { nested: boolean }) {
 
   return (
     <div className="pf-ledger">
-      <Band id="pf-videos" title={c.bands.videos} count={`${pad2(videoTestimonials.length)} clips`} nested={nested}>
+      {videoTestimonials.length > 0 && <Band id="pf-videos" title={c.bands.videos} count={`${pad2(videoTestimonials.length)} clips`} nested={nested}>
         <div className="pf-clips">
           {videoTestimonials.map((clip) => (
             <ClipPlayer key={clip.id} clip={clip} />
           ))}
         </div>
-      </Band>
+      </Band>}
 
       <Band id="pf-quotes" title={c.bands.quotes} count={`${pad2(communityQuotes.length)} notes`} nested={nested}>
+        <div className="pf-quotes">
         {communityQuotes.map((q) => (
           <blockquote key={q.name} className="pf-quote">
-            <p>{q.text}</p>
+            <p>“{q.text}”</p>
             <footer>
-              <cite>{q.name}</cite>
-              <span className="pg-mono">{q.context}</span>
-              <time className="pg-mono" dateTime={isoDay(q.date)}>
+              <div className="pf-quote__author">
+                {q.photo && <img className="pf-quote__photo" src={q.photo} alt={`Portrait of ${q.name}`} width={56} height={56} loading="lazy" decoding="async" />}
+                <div>
+                  <cite>{q.name}</cite>
+                  {q.company && <span className="pf-quote__company">{q.company}</span>}
+                </div>
+              </div>
+              {q.focus && <span className="pf-quote__focus">{q.focus}</span>}
+              {q.context && <span className="pg-mono">{q.context}</span>}
+              {q.date && <time className="pg-mono" dateTime={isoDay(q.date)}>
                 {q.date}
-              </time>
+              </time>}
             </footer>
           </blockquote>
         ))}
+        </div>
       </Band>
 
-      <Band id="pf-clients" title={c.bands.clients} count={`${pad2(clientAccounts.length)} running`} nested={nested}>
+      {clientAccounts.length > 0 && <Band id="pf-clients" title={c.bands.clients} count={`${pad2(clientAccounts.length)} running`} nested={nested}>
         {clientAccounts.map((a, i) => (
           <div key={a.label} className="pf-account">
             <span className="pf-key" data-blank={a.logo ? undefined : ''}>
@@ -75,7 +84,7 @@ function ProofLedger({ nested }: { nested: boolean }) {
             </div>
           </div>
         ))}
-      </Band>
+      </Band>}
     </div>
   )
 }

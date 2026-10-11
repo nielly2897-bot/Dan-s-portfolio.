@@ -5,6 +5,7 @@ import { MobileNav } from '@/components/drawer/MobileNav'
 import { SearchPalette } from '@/components/search/SearchPalette'
 import { SignalFlowBackground } from '@/components/background/SignalFlowBackground'
 import { SiteFooter } from '@/components/page/SiteFooter'
+import { ContactBar } from '@/components/page/ContactBar'
 import { DESKTOP_QUERY, useMediaQuery } from '@/hooks/use-media-query'
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll'
 import { ShellProvider, useShell } from './shell-context'
@@ -44,6 +45,7 @@ function Shell() {
       <SignalFlowBackground layout={!isDesktop ? 'full-width' : collapsed ? 'sidebar-collapsed' : 'sidebar-expanded'} />
       {/* Render one navigation, not both, so screen readers meet a single "Main" nav. */}
       {isDesktop ? <Sidebar /> : <MobileNav />}
+      <ContactBar />
       <main id="main" className="app-main" tabIndex={-1}>
         <div className="app-main__inner">
           <Outlet />

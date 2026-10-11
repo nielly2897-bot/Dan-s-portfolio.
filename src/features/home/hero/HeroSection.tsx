@@ -46,6 +46,18 @@ export function HeroSection() {
           {homeHero.cta.label}
           <ArrowUpRight size={16} weight="bold" aria-hidden />
         </Link>
+        <Link
+          to="/#proof"
+          className="hero__testimonials"
+          onClick={(event) => {
+            if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return
+            event.preventDefault()
+            scrollToSection('proof')
+          }}
+        >
+          Read client testimonials
+          <ArrowUpRight size={14} aria-hidden />
+        </Link>
       </div>
     </section>
   )

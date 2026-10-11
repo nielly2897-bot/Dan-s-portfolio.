@@ -1,4 +1,4 @@
-import { certification, site } from '@/content/site'
+import { site } from '@/content/site'
 import type { Faq, ProductFilm, ProductTab, Quote, VideoTestimonial, WorkChapter } from '@/content/schema'
 
 /** Absolute URL for a site path or an already absolute link. */
@@ -96,7 +96,7 @@ function videoObject(v: { name: string; description: string; thumbnail: string; 
   }
 }
 
-type PersonLd = { description: string; skills: string[]; credential: { name: string; id: string; url?: string }; sameAs: string[]; companyUrl: string }
+type PersonLd = { description: string; skills: string[]; credential?: { name: string; id: string; url?: string }; sameAs: string[]; companyUrl: string }
 
 /**
  * Home's About section: you as a Person (the `#person` node the other pages point at), with your
@@ -109,16 +109,15 @@ export function personJsonLd({ description, skills, credential, sameAs, companyU
       description,
       image: absoluteUrl(site.avatar.src),
       address: { '@type': 'PostalAddress', addressCountry: site.countryCode },
-      worksFor: { '@type': 'Organization', name: site.brand, url: companyUrl },
+      worksFor: { '@type': 'Organization', name: site.brand, ...(companyUrl !== '#' ? { url: companyUrl } : {}) },
       knowsAbout: skills,
-      hasCredential: {
+      ...(credential ? { hasCredential: {
         '@type': 'EducationalOccupationalCredential',
         name: credential.name,
         credentialCategory: 'certification',
         identifier: credential.id,
-        ...(certification.issuer ? { recognizedBy: { '@type': 'Organization', name: certification.issuer } } : {}),
         ...(credential.url ? { url: credential.url } : {}),
-      },
+      } } : {}),
       sameAs,
     },
   ])
@@ -193,7 +192,7 @@ export function proofJsonLd({ path, title, description, quotes, videos }: ProofL
           '@type': 'Quotation',
           text: q.text,
           creator: { '@type': 'Person', name: q.name },
-          dateCreated: isoDay(q.date),
+            ...(q.date ? { dateCreated: isoDay(q.date) } : {}),
           about: { '@id': `${site.url}/#person` },
         })),
         ...videos.map((v) =>
@@ -208,6 +207,6 @@ export function proofJsonLd({ path, title, description, quotes, videos }: ProofL
         ),
       ],
     },
-    breadcrumbs(path, 'Proof'),
+      breadcrumbs(path, 'Testimonials'),
   ])
 }

@@ -59,6 +59,7 @@
 
 .ms__keys {
   display: none;
+  flex-wrap: wrap;
   gap: 28px;
   margin: 0;
   padding: 0;

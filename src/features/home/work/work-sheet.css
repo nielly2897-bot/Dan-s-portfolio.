@@ -343,3 +343,11 @@ a:hover .sh__name svg {
     gap: 48px 40px;
   }
 }
+
+.sh__shot video {width:100%;height:100%;object-fit:contain;background:#111;}
+.sh__row a {text-decoration:underline;text-underline-offset:4px;}
+
+.sh__shot--video {aspect-ratio:9/16; width:100%; max-width:360px; justify-self:center;}
+
+.sh__shot--video-wide { aspect-ratio:16/9; max-width:none; }
+.sh__shot--page img {width:100%;height:100%;object-fit:cover;object-position:top;}

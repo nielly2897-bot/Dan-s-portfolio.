@@ -53,15 +53,22 @@
 .wb__head {
   margin-bottom: clamp(28px, 5vh, 48px);
 }
+.wb__recent {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-bottom:32px;}
+.wb__project {overflow:hidden;border:1px solid var(--line);border-radius:20px;background:var(--surface);}
+.wb__project-shot {display:block;aspect-ratio:16/10;overflow:hidden;background:var(--surface-2);}
+.wb__project-shot img {width:100%;height:100%;object-fit:cover;object-position:top;}
+.wb__project-copy {padding:24px;}
+.wb__project-copy h3 {font-size:clamp(22px,3cqi,32px);margin:10px 0;}
+.wb__project-copy > p:not(.wk-count) {color:var(--ink-2);line-height:1.6;margin-bottom:18px;}
+.wb__project-link {display:inline-flex;align-items:center;min-height:44px;margin-right:18px;font-size:13px;font-weight:600;color:var(--accent-ink);}
+@container(max-width:640px){.wb__recent {grid-template-columns:1fr;}}
 .wb__grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: repeat(4, clamp(150px, 14.5cqi, 210px));
+  grid-template-rows: repeat(2, clamp(230px, 24cqi, 320px));
   grid-template-areas:
-    'web web web web web web app app app tic tic tic'
-    'web web web web web web app app app tic tic tic'
-    'aut aut aut aut fw  fw  app app app bp  bp  bp'
-    'aut aut aut aut ai  ai  bot bot bot bp  bp  bp';
+    'web web web app app app tic tic tic aut aut aut'
+    'fw fw fw bp bp bp ai ai ai bot bot bot';
   gap: 12px;
   margin: 0;
   padding: 0;
@@ -176,14 +183,12 @@
 @container (max-width: 700px) {
   .wb__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: 220px 180px 180px 200px 170px 160px;
+    grid-template-rows: repeat(4, 230px);
     grid-template-areas:
-      'web web'
-      'app tic'
-      'app bp'
-      'aut aut'
-      'fw  ai'
-      'bot bot';
+      'web app'
+      'tic aut'
+      'fw bp'
+      'ai bot';
     gap: 10px;
   }
 }
@@ -319,3 +324,18 @@
   font-size: 4.2cqw;
   line-height: 1.5;
 }
+
+/* Work samples fill each tile as a compact collage rather than floating in an empty frame. */
+.wb__collage {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(0,1fr);gap:3px;background:var(--line);}
+.wb__fragment {position:relative;display:block;min-width:0;min-height:0;overflow:hidden;background:var(--surface-2);}
+.wb__fragment img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;}
+.wb__collage[data-count='3'] .wb__fragment:first-child {grid-row:span 2;}
+.wb__collage[data-count='7'] .wb__fragment:last-child {grid-column:span 2;}
+.wb__cell[data-area='websites'] .wb__collage {grid-template-columns:1fr;}
+.wb__collage[data-count='14'] {grid-template-columns:repeat(4,minmax(0,1fr));}
+.wb__collage[data-count='14'] .wb__fragment:first-child,.wb__collage[data-count='14'] .wb__fragment:nth-child(2) {grid-column:span 2;}
+.wb__fragment[data-item='video-editing'] img {transform:scale(1.65);object-position:center;}
+.wb__fragment[data-item='nofognation-carousel'] img {transform:scale(1.12);object-position:right center;}
+.wb__fragment[data-item^='countdown'] img {object-position:center;}
+:root[data-theme='dark'] .wb__fragment img {filter:brightness(.92);}
+@container(max-width:400px){.wb__grid {grid-template-columns:1fr;grid-template-rows:repeat(8,260px);grid-template-areas:'web' 'app' 'tic' 'aut' 'fw' 'bp' 'ai' 'bot';}}

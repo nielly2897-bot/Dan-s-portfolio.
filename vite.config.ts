@@ -7,6 +7,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 const src = fileURLToPath(new URL('./src', import.meta.url))
 
+// Netlify provides the production URL; an explicit value supports custom domains.
+process.env.VITE_SITE_URL ||= process.env.URL || 'http://127.0.0.1:5190'
+
 /**
  * Writes dist/sitemap.xml, dist/llms.txt and dist/robots.txt from the route registry, the Work chapters
  * (src/app/sitemap.ts) and site.url (src/content/site.ts), so a new page, a chapter or a new domain is in

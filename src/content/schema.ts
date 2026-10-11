@@ -27,7 +27,7 @@ export type Faq = {
 
 /** A profile link shown as a logo button. `icon` picks the glyph in SocialIcon. */
 export type SocialLink = LinkRef & {
-  icon: 'facebook' | 'linkedin' | 'discord' | 'github' | 'x'
+  icon: 'facebook' | 'linkedin' | 'discord' | 'github' | 'x' | 'tiktok' | 'youtube' | 'whatsapp'
   /** Someone else's page (a partner, a community), not your own profile: kept out of the Person JSON-LD sameAs. */
   partner?: true
 }
@@ -51,6 +51,7 @@ export type Credential = {
 
 export type Service = {
   id: string
+  thumbnail?: Image
   title: string
   /** The benefit, one line. Leads the row. */
   summary: string
@@ -137,6 +138,9 @@ export type WorkItem = {
   group?: string
   summary: string
   image?: Image
+  video?: string
+  videoPoster?: string
+  videoAspect?: string
   href?: string
   /** What it runs on (AI builds). */
   stack?: string
@@ -165,8 +169,11 @@ export type VideoTestimonial = {
 
 export type Quote = {
   name: string
-  context: string
-  date: string
+  photo?: string
+  company?: string
+  focus?: string
+  context?: string
+  date?: string
   text: string
 }
 

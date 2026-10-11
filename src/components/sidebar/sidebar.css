@@ -203,7 +203,9 @@
   color: var(--ink-3);
   font-size: 13px;
   line-height: 1.35;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 220px;
+  text-wrap: balance;
 }
 
 /* The drawer's close button, pinned top right over the band. */

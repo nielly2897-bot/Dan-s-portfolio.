@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { CaretDown, EnvelopeSimple } from '@phosphor-icons/react'
 import { PageMeta } from '@/app/PageMeta'
 import type { PageRoute } from '@/app/routes'
@@ -8,12 +9,15 @@ import { allFaqs } from '@/content/faqs'
 import { mailtoHref, site } from '@/content/site'
 import { contactJsonLd } from '@/lib/seo'
 import { ContactForm } from './ContactForm'
+import { BookingCalendar } from './BookingCalendar'
+import { useHashLanding } from '@/hooks/use-hash-landing'
 import './contact.css'
 
 const pad2 = (n: number) => String(n).padStart(2, '0')
 
 /** The answers plate beside the form. Nested = inside a Home section, so every heading steps down one level. */
 function ContactSheet({ nested }: { nested: boolean }) {
+  const [discordCopied, setDiscordCopied] = useState(false)
   const H = nested ? 'h3' : 'h2'
   return (
     <div className="ct-sheet">
@@ -37,8 +41,10 @@ function ContactSheet({ nested }: { nested: boolean }) {
         <div className="ct-direct">
           <a className="ct-mail" href={mailtoHref()}>
             <EnvelopeSimple size={16} weight="fill" aria-hidden />
-            {site.email}
+            {site.email || `WhatsApp: ${site.whatsapp}`}
           </a>
+          <a className="ct-mail" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp: {site.whatsapp}</a>
+          <p>Discord: <button className="pg-btn" type="button" onClick={() => navigator.clipboard.writeText(site.discordUsername).then(() => setDiscordCopied(true)).catch(() => setDiscordCopied(false))}>{discordCopied ? 'Copied .newerth' : 'Copy .newerth'}</button><span aria-live="polite" className="ct-discord-status">{discordCopied ? ' Username copied.' : ''}</span></p>
           <SocialLinks />
         </div>
       </section>
@@ -60,12 +66,14 @@ function ContactSheet({ nested }: { nested: boolean }) {
  * the socials sit under the answers for anyone who would rather write directly.
  */
 export function ContactPage({ page }: { page: PageRoute }) {
+  useHashLanding()
   return (
     <div className="pg ct">
       <PageMeta page={page} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: contactJsonLd({ path: page.path, title: page.title, description: page.description, faq: allFaqs }) }} />
       <PageHeader eyebrow={c.eyebrow} titleThin={c.titleThin} titleBold={c.titleBold} lede={c.lede} />
       <ContactSheet nested={false} />
+      <BookingCalendar />
     </div>
   )
 }
@@ -76,6 +84,7 @@ export function ContactSection() {
     <section id="contact" className="pg pg--section ct" aria-labelledby="contact-title">
       <PageHeader level={2} id="contact-title" eyebrow={c.eyebrow} titleThin={c.titleThin} titleBold={c.titleBold} lede={c.lede} />
       <ContactSheet nested />
+      <BookingCalendar />
     </section>
   )
 }

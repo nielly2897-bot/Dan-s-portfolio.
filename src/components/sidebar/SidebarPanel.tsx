@@ -1,6 +1,5 @@
 import { useRef, type PointerEvent, type ReactNode } from 'react'
 import { Link } from 'react-router'
-import { SealCheck } from '@phosphor-icons/react'
 import { site } from '@/content/site'
 import { BrandMark } from '@/components/brand/BrandMark'
 import { SocialLinks } from '@/components/brand/SocialLinks'
@@ -59,9 +58,6 @@ export function SidebarPanel({ variant, collapsed = false, onNavigate, onHoverCh
         >
           <span className="sb-pic">
             <img className="sb-pic__img" src={site.avatarSmall} alt="" width={224} height={224} />
-            <span className="sb-pic__check" aria-hidden>
-              <SealCheck weight="fill" />
-            </span>
           </span>
           <span className="sb-profile__name sb-fade">{site.name}</span>
           <span className="sb-profile__role sb-fade">

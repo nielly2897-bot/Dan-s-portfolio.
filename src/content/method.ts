@@ -2,12 +2,12 @@ import type { MethodStep } from './schema'
 
 /** Your method: the three jobs your service does for a client, in order. It names the steps of the Home automation diagram. */
 export const method = {
-  eyebrow: 'Your Method',
+  eyebrow: 'The Socinex approach',
   title: 'Attract. Nurture. Convert.',
-  summary: 'PLACEHOLDER - tell me what to put here: one line on the three jobs your work does for a client, in order.',
+  summary: 'Connect your online presence, content, and follow-up into a clear path from first interest to the next conversation.',
   steps: [
-    { name: 'Attract', body: 'PLACEHOLDER - tell me what to put here: one short line on step one.', inputs: ['Input A', 'Input B', 'Input C', 'Input D'] },
-    { name: 'Nurture', body: 'PLACEHOLDER - tell me what to put here: one short line on step two.', inputs: ['Input A', 'Input B', 'Input C'] },
-    { name: 'Convert', body: 'PLACEHOLDER - tell me what to put here: one short line on step three.', inputs: ['Input A', 'Input B', 'Input C'] },
+    { name: 'Attract', body: 'Reach the right people through your website and repurposed content.', inputs: ['Website', 'Short-form videos', 'Social captions', 'YouTube'] },
+    { name: 'Nurture', body: 'Keep the conversation going with email campaigns and newsletters.', inputs: ['Email campaigns', 'Newsletters', 'Follow-up workflows'] },
+    { name: 'Convert', body: 'Give interested leads a clear next step and keep the workflow running.', inputs: ['Enquiries', 'Booking flows', 'Automation maintenance'] },
   ] satisfies MethodStep[],
 }

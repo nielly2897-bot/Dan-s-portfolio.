@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { CheckCircle, Copy, PaperPlaneTilt, WarningCircle } from '@phosphor-icons/react'
 import { contactForm as f } from '@/content/contact'
-import { site } from '@/content/site'
-import { contactMailto, contactText, isCompleteMessage, missingFields, type ContactMessage } from '@/lib/mail'
+import { site, mailtoHref } from '@/content/site'
+import { contactMailto, contactWhatsApp, contactText, isCompleteMessage, missingFields, type ContactMessage } from '@/lib/mail'
 
 type Status = 'idle' | 'error' | 'sent'
 
@@ -50,7 +50,8 @@ export function ContactForm({ nested = false }: { nested?: boolean }) {
       }
       return
     }
-    window.open(contactMailto(message), '_self') // window.open (not location) so the E2E check can read the URL
+    const channel = (event.nativeEvent as SubmitEvent).submitter?.getAttribute('value') ?? 'whatsapp'
+    window.open(channel === 'email' ? contactMailto(message) : contactWhatsApp(message), '_blank', 'noopener,noreferrer')
     setInvalid([])
     setSent(message)
     setCopied(false)
@@ -78,9 +79,10 @@ export function ContactForm({ nested = false }: { nested?: boolean }) {
         <p>{f.sentBody}</p>
         <p className="ct-done__fallback">
           {f.noMailApp}{' '}
-          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={mailtoHref()}>{site.email || site.whatsapp}</a>
         </p>
         <div className="ct-done__actions">
+          {sent ? <><a className="pg-btn" href={contactWhatsApp(sent)} target="_blank" rel="noopener noreferrer">Continue to WhatsApp</a><a className="pg-btn" href={contactMailto(sent)}>Continue to Email</a></> : null}
           <button type="button" className="pg-btn" onClick={copyMessage}>
             <Copy size={16} aria-hidden />
             {copied ? f.copied : f.copy}
@@ -123,10 +125,11 @@ export function ContactForm({ nested = false }: { nested?: boolean }) {
         <textarea {...field('message')} required maxLength={1500} placeholder={f.phMessage} />
       </label>
       <div className="ct-actions">
-        <button ref={sendRef} type="submit" className="ct-send" onAnimationEnd={(e) => e.currentTarget.classList.remove('is-shaking')}>
+        <button ref={sendRef} type="submit" name="channel" value="whatsapp" className="ct-send" onAnimationEnd={(e) => e.currentTarget.classList.remove('is-shaking')}>
           <PaperPlaneTilt size={16} weight="fill" aria-hidden />
           {f.send}
         </button>
+        <button type="submit" name="channel" value="email" className="ct-send"><PaperPlaneTilt size={16} aria-hidden />Continue to Email</button>
         {status === 'error' ? (
           <span id="ct-err" className="ct-err" role="alert">
             <WarningCircle size={16} weight="fill" aria-hidden />

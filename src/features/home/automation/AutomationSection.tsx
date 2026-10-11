@@ -95,6 +95,7 @@ export function AutomationSection() {
   }
 
   return (
+    <>
     <section ref={sectionRef} id="automation" className="fl" aria-labelledby="fl-title">
       <div className="fl__pin">
         <header className="fl__head">
@@ -283,5 +284,39 @@ export function AutomationSection() {
         </div>
       </div>
     </section>
+    <section className="fl-follow" aria-labelledby="fl-follow-title">
+      <header>
+        <p className="wk-eyebrow">{liveAutomation.operations.eyebrow}</p>
+        <h3 id="fl-follow-title">{liveAutomation.operations.title}</h3>
+        <p>{liveAutomation.operations.intro}</p>
+      </header>
+      <ol className="fl-follow__steps">
+        {liveAutomation.operations.items.map((item, i) => (
+          <li key={item.title}>
+            <span className="fl-follow__number">{pad2(i + 1)}</span>
+            <h4>{item.title}</h4>
+            <p>{item.body}</p>
+          </li>
+        ))}
+      </ol>
+      <div className="fl-follow__score" aria-labelledby="fl-score-title">
+        <div>
+          <p className="wk-eyebrow">{liveAutomation.scoring.eyebrow}</p>
+          <h3 id="fl-score-title">{liveAutomation.scoring.title}</h3>
+          <p>{liveAutomation.scoring.intro}</p>
+          <p className="fl-follow__note">{liveAutomation.scoring.note}</p>
+        </div>
+        <table>
+          <caption className="sr-only">Example lead engagement points per activity</caption>
+          <thead><tr><th scope="col">Lead activity</th><th scope="col">Points</th></tr></thead>
+          <tbody>
+            {liveAutomation.scoring.activities.map((item) => (
+              <tr key={item.activity}><th scope="row">{item.activity}</th><td>+{item.points}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    </>
   )
 }

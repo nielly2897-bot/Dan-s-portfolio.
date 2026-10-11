@@ -202,3 +202,38 @@
   font-family: var(--font-mono);
   font-size: 12px;
 }
+
+/* Client feedback stays fully visible in a simple, even-height card grid. */
+.pf-quotes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+.pf-quotes .pf-quote {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: clamp(20px, 2.5cqi, 32px);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+}
+.pf-quotes .pf-quote > p { font-size: 15px; line-height: 1.7; }
+.pf-quotes .pf-quote > footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: auto;
+  text-align: left;
+}
+.pf-quotes cite { font-size: 16px; }
+.pf-quote__company { font-size: 14px; color: var(--ink-2); }
+.pf-quote__focus { font-size: 12px; line-height: 1.6; color: var(--ink-3); }
+.pf-quote__author { display: flex; align-items: center; gap: 12px; }
+.pf-quote__author > div { display: grid; gap: 4px; }
+.pf-quote__photo { width: 56px; height: 56px; flex-shrink: 0; object-fit: cover; object-position: center 30%; border-radius: 50%; }
+@container (min-width: 900px) {
+  .pf-quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

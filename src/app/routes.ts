@@ -1,7 +1,7 @@
 import type { Icon } from '@phosphor-icons/react'
-import { Briefcase, Compass, Cube, Envelope, FileText, House, SealCheck, ShieldCheck, Stack, User } from '@phosphor-icons/react'
+import { Briefcase, Cube, Envelope, FileText, House, Quotes, ShieldCheck, Stack, User } from '@phosphor-icons/react'
 import { workCount } from '@/content/work'
-import { externalLinks, site } from '@/content/site'
+import { site } from '@/content/site'
 
 /**
  * The route registry: the one list that drives the router, the sidebar, the search palette
@@ -53,12 +53,18 @@ const SUFFIX = site.name
 
 export const pages: PageRoute[] = [
   {
+    kind: 'page', id: 'work-style', path: '/work-style', draft: true,
+    label: 'DISC & Work Style', title: `DISC & Work Style | ${SUFFIX}`,
+    description: 'A brief work-style summary based on Daniel’s DISC & Motivators report.',
+    icon: FileText, group: 'discover', section: 'work-style',
+  },
+  {
     kind: 'page',
     id: 'home',
     path: '/',
     label: 'Home',
-    title: `${SUFFIX} | Your Headline Here`,
-    description: 'PLACEHOLDER - tell me what to put here: the one-sentence search result description of you and what you do (under 160 characters).',
+    title: `${SUFFIX} | Socinex — Websites, Automation & Content`,
+    description: 'Daniel Torres of Socinex: GHL website and automation specialist and SMM content strategist with four years of industry experience.',
     icon: House,
     group: 'menu',
   },
@@ -69,7 +75,7 @@ export const pages: PageRoute[] = [
     path: '/work',
     label: 'Work',
     title: `Work | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line on the kinds of work you show.',
+    description: 'Client websites, GoHighLevel automations, reels, podcast graphics, and social campaigns.',
     icon: Briefcase,
     group: 'menu',
     badge: workCount,
@@ -82,7 +88,7 @@ export const pages: PageRoute[] = [
     path: '/services',
     label: 'Services',
     title: `Services | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line listing the services you offer.',
+    description: 'Automation, website development and maintenance, and content repurposing with Daniel Torres at Socinex.',
     icon: Stack,
     group: 'menu',
     section: 'services',
@@ -94,7 +100,7 @@ export const pages: PageRoute[] = [
     path: '/about',
     label: 'About',
     title: `About ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line on your background and where you are based.',
+    description: 'Meet Daniel Torres, a GHL website and automation specialist and SMM content strategist with four years of industry experience.',
     icon: User,
     group: 'menu',
     section: 'about',
@@ -103,10 +109,10 @@ export const pages: PageRoute[] = [
     kind: 'page',
     id: 'proof',
     path: '/proof',
-    label: 'Proof',
-    title: `Proof | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line on the clients, testimonials and feedback this page shows.',
-    icon: SealCheck,
+    label: 'Testimonials',
+    title: `Client Testimonials | ${SUFFIX}`,
+    description: 'Client feedback on Daniel Torres and Socinex: GoHighLevel automation, website development, and creative digital marketing.',
+    icon: Quotes,
     group: 'discover',
     section: 'proof',
   },
@@ -114,9 +120,9 @@ export const pages: PageRoute[] = [
     kind: 'page',
     id: 'showcase',
     path: '/showcase',
-    label: 'Showcase',
+    label: 'Intro Video',
     title: `Showcase | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line on the product or project you feature here.',
+    description: 'Meet Daniel Torres of Socinex in his introduction video.',
     icon: Cube,
     group: 'discover',
     section: 'showcase',
@@ -127,7 +133,7 @@ export const pages: PageRoute[] = [
     path: '/contact',
     label: 'Contact',
     title: `Contact | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line inviting people to get in touch, and when you reply.',
+    description: 'Contact Daniel Torres in Cavite, Philippines through WhatsApp or social media.',
     icon: Envelope,
     group: 'general',
     section: 'contact',
@@ -152,17 +158,7 @@ export const pages: PageRoute[] = [
   },
 ]
 
-export const externals: ExternalRoute[] = [
-  {
-    kind: 'external',
-    id: 'resource',
-    href: externalLinks.resource,
-    label: 'Resources',
-    description: 'PLACEHOLDER - tell me what to put here: one line on the off-site link (a blog, a guide, a store), or delete this entry.',
-    icon: Compass,
-    group: 'discover',
-  },
-]
+export const externals: ExternalRoute[] = []
 
 /** Sidebar entries per group, in registry order (pages first, then external links). */
 export function navEntries(group: NavGroupId): NavEntry[] {

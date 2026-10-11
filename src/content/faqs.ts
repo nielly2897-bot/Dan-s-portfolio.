@@ -4,23 +4,23 @@ import type { Faq } from './schema'
 export const faqs = {
   whatYouBuild: {
     question: 'What do you actually build?',
-    answer: 'PLACEHOLDER - tell me what to put here: the kinds of work you take on and who it is usually for, in two sentences.',
+    answer: 'I build and maintain websites, connect lead acquisition and email nurturing workflows, and repurpose recorded videos into content. I work with local community churches, financial traders, wellness coaches, real estate firms, and SaaS agency owners.',
   },
   startSpeed: {
     question: 'How fast can you start?',
-    answer: 'PLACEHOLDER - tell me what to put here: how soon you can begin small and large jobs, and the hours or time zones you overlap.',
+    answer: 'Share your scope and preferred timeline so we can discuss availability. I am based in Cavite, Philippines (UTC+8).',
   },
   needStack: {
     question: 'Do I need a specific platform?',
-    answer: 'PLACEHOLDER - tell me what to put here: which tools you work in, and what you do when a client stack is a poor fit.',
+    answer: 'My website and automation work centers on GoHighLevel. Tell me which tools you use so we can review how they fit your website, lead nurturing, and content workflow.',
   },
   pricing: {
     question: 'How much do you charge?',
-    answer: 'PLACEHOLDER - tell me what to put here: how you price (fixed, hourly, retainer), what comes before a quote, and what is included.',
+    answer: 'Pricing depends on the services and scope you need. Share your goals, current setup, and deliverables so we can discuss a suitable package.',
   },
   afterWrite: {
     question: 'What happens after I write?',
-    answer: 'PLACEHOLDER - tell me what to put here: how fast you reply and what the visitor gets back (a plan, a call, a straight no).',
+    answer: 'We can review your goals and current setup, discuss the services that fit, and agree on the next step before onboarding.',
   },
 } satisfies Record<string, Faq>
 

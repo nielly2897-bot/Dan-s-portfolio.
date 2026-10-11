@@ -1,6 +1,5 @@
 import type { Image, ToolMark } from './schema'
-import { certification, externalLinks, site } from './site'
-import { tools } from './tools'
+import { site } from './site'
 
 /**
  * The Home About section: the desk illustration stands on a hairline floor with the lead over its
@@ -10,28 +9,24 @@ export const aboutSection = {
   eyebrow: 'About',
   titleThin: "Hi, I'm",
   titleBold: `${site.name}.`,
-  lede: 'PLACEHOLDER - tell me what to put here: one sentence on what you do and for whom.',
-  lead: 'PLACEHOLDER - tell me what to put here: your background.',
-  leadQuiet: 'PLACEHOLDER - tell me what to put here: what you do now.',
-  note: {
-    company: `${site.brand} is my company`,
-    product: { label: 'Your Product', href: externalLinks.showcase },
-    rest: 'PLACEHOLDER - tell me what to put here: one sentence on how the product relates to your company, or delete this note.',
-  },
+  lede: 'I bring four years of industry experience to GoHighLevel websites and automation, social media marketing, and content strategy.',
+  lead: 'I work with local community churches, financial traders, wellness coaches, real estate firms, and SaaS agency owners.',
+  leadQuiet: 'I connect websites, lead nurturing, and content workflows so clients can spend more time on the people they serve.',
+  workStyle: 'I work best with clear goals, written expectations, and a practical plan. I bring careful attention to detail and steady follow-through, check the facts before making decisions, and look for ways to make systems more reliable. I value meaningful creative work and results that make good use of your time and resources.',
+  note: `${site.brand} brings my work in automation, website development, and content strategy together under one brand.`,
   picture: {
-    src: '/images/profile/desk.webp',
-    srcSet: '/images/profile/800/desk.webp 800w, /images/profile/desk.webp 1200w',
-    alt: `Illustration of ${site.name} at a desk, working at a monitor with a coffee beside them`,
-    width: 1200,
-    height: 889,
+    src: '/images/profile/daniel-studio-ai.png',
+    alt: `AI-assisted studio portrait of ${site.name}, based on his own photographs`,
+    width: 1122,
+    height: 1402,
   } satisfies Image,
 }
 
 export const capabilities: { title: string; tools: ToolMark[] }[] = [
-  { title: 'Role One', tools: [tools.toolA, tools.toolB, tools.toolC] },
-  { title: 'Role Two', tools: [tools.toolD, tools.toolE, tools.toolF, tools.toolG, tools.toolH] },
-  { title: 'Role Three', tools: [tools.toolD, tools.toolI, tools.toolJ, tools.toolK, tools.toolL] },
-  { title: 'Role Four', tools: [tools.toolF, tools.toolG, tools.toolH] },
+  { title: 'GHL Automation & Lead Nurturing', tools: [] },
+  { title: 'GHL Website Development', tools: [] },
+  { title: 'SMM Content Strategy', tools: [] },
+  { title: 'Content Repurposing', tools: [] },
 ]
 
 export type AboutCredential = {
@@ -45,21 +40,6 @@ export type AboutCredential = {
 }
 
 export const credentials: AboutCredential[] = [
-  { id: 'cert', title: certification.title, detail: certification.detail, image: { ...certification.image!, alt: '' } },
-  { id: 'place', title: `Based ${site.timePlace}`, detail: 'Your time zone · Your hours' },
-  {
-    id: 'community',
-    title: 'Your Community',
-    detail: 'Your role',
-    href: '#',
-    image: { src: '/images/badges/64/community.webp', alt: '', width: 64, height: 64 },
-  },
-  {
-    id: 'partner',
-    title: 'Your Partner',
-    detail: 'Your role',
-    href: '#',
-    image: { src: '/images/badges/64/partner-light.webp', alt: '', width: 64, height: 64 },
-    imageDark: { src: '/images/badges/64/partner.webp', alt: '', width: 64, height: 64 },
-  },
+  { id: 'place', title: 'Four years of industry experience', detail: 'Websites · Automation · Content' },
+  { id: 'cert', title: 'DTI registration (PDF)', detail: 'Socinex Digital Marketing Services · Registered February 16, 2026', href: '/documents/socinex-dti-registration.pdf' },
 ]

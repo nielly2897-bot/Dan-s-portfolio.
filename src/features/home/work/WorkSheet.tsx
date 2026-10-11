@@ -104,7 +104,7 @@ export function WorkSheet({ chapter }: { chapter: WorkChapter | null }) {
 
             <div ref={bodyRef} className="sh__body" onScroll={onBodyScroll}>
               <p className="sh__intro">{shown.description}</p>
-              {shown.lead ? <Single chapter={shown} /> : shown.items.some((item) => item.image) ? <Showcase items={shown.items} /> : <Groups items={shown.items} />}
+              {shown.lead ? <Single chapter={shown} /> : shown.items.some((item) => item.image || item.video) ? <Showcase items={shown.items} /> : <Groups items={shown.items} />}
 
               {next && next !== shown ? (
                 <nav className="sh__next" aria-label="More work" data-reveal>
@@ -149,7 +149,8 @@ function Grid({ items, lead }: { items: WorkItem[]; lead: boolean }) {
       {items.map((item, i) => (
         <li key={item.id} className={lead && i === 0 ? 'sh__item sh__item--lead' : 'sh__item'} data-reveal>
           <ItemLink item={item}>
-            <span className={item.href ? 'sh__shot' : 'sh__shot sh__shot--contain'}>
+            <span className={item.video ? `sh__shot sh__shot--video${item.videoAspect === 'landscape' ? ' sh__shot--video-wide' : ''}` : item.image && item.image.height > item.image.width * 3 ? 'sh__shot sh__shot--page' : 'sh__shot sh__shot--contain'} style={item.image ? { aspectRatio: item.image.height > item.image.width * 3 ? '16 / 10' : `${item.image.width} / ${item.image.height}` } : undefined}>
+              {item.video ? <video controls playsInline preload="none" poster={item.videoPoster} aria-label={item.name} src={item.video} /> : null}
               {item.image ? (
                 <img
                   src={item.image.src}
@@ -192,7 +193,7 @@ function Groups({ items }: { items: WorkItem[] }) {
               .filter((item) => item.kicker === group)
               .map((item) => (
                 <li key={item.id} className="sh__row">
-                  <h4 className="sh__name">{item.name}</h4>
+                  <h4 className="sh__name">{item.href ? <a href={item.href} target="_blank" rel="noopener noreferrer">{item.name} <ArrowUpRight size={16} aria-hidden /></a> : item.name}</h4>
                   <p className="sh__sum">{item.summary}</p>
                   <p className="wk-count">
                     {item.stack}
@@ -238,9 +239,10 @@ function Single({ chapter }: { chapter: WorkChapter }) {
 
 /** A live build opens in a new tab; one without a public link is a plain block. */
 function ItemLink({ item, children }: { item: WorkItem; children: ReactNode }) {
-  if (!item.href) return <div className="sh__link">{children}</div>
+  const href = item.href ?? item.image?.src
+  if (!href || item.video) return <div className="sh__link">{children}</div>
   return (
-    <a className="sh__link" href={item.href} target="_blank" rel="noopener">
+    <a className="sh__link" href={href} target="_blank" rel="noopener">
       {children}
     </a>
   )

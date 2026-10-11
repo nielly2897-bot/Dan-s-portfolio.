@@ -1,6 +1,7 @@
 import { ArrowUpRight, MapPin } from '@phosphor-icons/react'
+import { Link } from 'react-router'
 import { aboutSection, capabilities, credentials, type AboutCredential } from '@/content/about'
-import { certification, externalLinks, socials } from '@/content/site'
+import { externalLinks, socials } from '@/content/site'
 import { personJsonLd } from '@/lib/seo'
 import './about.css'
 
@@ -9,8 +10,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0')
 const personLd = personJsonLd({
   description: aboutSection.lede,
   skills: capabilities.map((c) => c.title),
-  credential: { name: certification.title, id: certification.detail.replace(/^(Member|Credential) ID /, ''), url: certification.href },
-  sameAs: [...socials.filter((s) => !s.partner).map((s) => s.href), ...(certification.href ? [certification.href] : [])],
+  sameAs: socials.filter((s) => !s.partner).map((s) => s.href),
   companyUrl: externalLinks.company,
 })
 
@@ -63,7 +63,6 @@ export function AboutSection() {
         <div className="ab__pic">
           <img
             src={s.picture.src}
-            srcSet={s.picture.srcSet}
             sizes="auto, (min-width: 1024px) 46vw, 92vw"
             alt={s.picture.alt}
             width={s.picture.width}
@@ -75,13 +74,10 @@ export function AboutSection() {
       </div>
 
       <div className="ab__below">
-        <p className="ab__note">
-          <strong>{s.note.company}</strong>, and{' '}
-          <a href={s.note.product.href} target="_blank" rel="noopener noreferrer">
-            {s.note.product.label}
-          </a>{' '}
-          {s.note.rest}
-        </p>
+        <div>
+          <p className="ab__note">{s.note}</p>
+          <Link to="/proof" className="btn-line ab__testimonials">Client testimonials <ArrowUpRight size={14} aria-hidden /></Link>
+        </div>
         <ul className="ab__caps">
           {capabilities.map((c, i) => (
             <li key={c.title} className="ab__cap">
@@ -100,6 +96,18 @@ export function AboutSection() {
           ))}
         </ul>
       </div>
+
+      <section id="work-style" className="ab__work-style" aria-labelledby="ab-style-title"><h3 id="ab-style-title">DISC & Work Style</h3><p className="ab__style-source">A brief summary from my DISC & Motivators report</p><p>{s.workStyle}</p><a className="btn-line ab__document" href="/documents/daniel-disc-motivators.pdf" target="_blank" rel="noopener noreferrer">Read my DISC report (PDF) <ArrowUpRight size={14} aria-hidden /></a></section>
+
+      <div className="ab__portraits" aria-label="Photos of Daniel Torres">
+        <figure><img src="/images/profile/daniel-event-graded.png" alt="Daniel Torres in a black suit and glasses at an event" width={841} height={1870} loading="lazy" /><figcaption>At an event</figcaption></figure>
+      </div>
+
+      <section className="ab__work-style" aria-labelledby="ab-setup-title">
+        <h3 id="ab-setup-title">My work setup</h3>
+        <p>Intel Core i5-12400 · 32 GB RAM · Intel UHD Graphics 730 · 477 GB storage · Windows 11 Pro (64-bit)</p>
+        <a className="btn-line ab__document" href="https://www.speedtest.net/result/19729172893" target="_blank" rel="noopener noreferrer">View my internet speed test <ArrowUpRight size={14} aria-hidden /></a>
+      </section>
 
       <div className="ab__creds">
         {credentials.map((c) => (

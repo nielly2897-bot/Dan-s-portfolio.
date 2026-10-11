@@ -75,6 +75,33 @@
   filter: var(--cutout-rim);
 }
 
+/* The supplied portrait sits beside the introduction without overlapping the copy. */
+.ab__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(24px, 4cqi, 64px);
+  align-items: center;
+  min-height: 0;
+  padding-bottom: 32px;
+}
+.ab__lead { max-width: none; font-size: clamp(24px, 2.8cqi, 36px); }
+.ab__pic {
+  position: relative;
+  right: auto;
+  width: min(100%, 360px);
+  max-width: 360px;
+  aspect-ratio: 3 / 4;
+  justify-self: end;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+.ab__pic > img { object-fit: cover; object-position: center; filter: none; }
+.ab__testimonials { max-width: 100%; padding-inline: 20px; font-size: 11px; }
+@container (max-width: 760px) {
+  .ab__stage { grid-template-columns: minmax(0, 1fr); }
+  .ab__pic { justify-self: center; }
+}
+
 /* ---------- Below the floor ---------- */
 
 .ab__below {
@@ -318,3 +345,17 @@ a.ab__cred:focus-visible,
     animation-name: none;
   }
 }
+
+.ab__work-style {margin-top:40px;padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--surface-2);}
+.ab__work-style h3 {font-size:1.25rem;margin:0 0 12px;}
+.ab__work-style p {max-width:72ch;line-height:1.7;color:var(--ink-2);margin:0;}
+.ab__work-style {scroll-margin-top:100px;}
+.ab__work-style .ab__style-source {font-size:.85rem;margin-bottom:16px;}
+.ab__document {margin-top:20px;max-width:100%;white-space:normal;font-size:13px;overflow-wrap:anywhere;}
+.ab__portraits {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:32px;}
+.ab__portraits figure {margin:0;}
+.ab__portraits:has(> figure:only-child) {grid-template-columns:minmax(0,560px);}
+.ab__portraits img {width:100%;height:clamp(280px,40cqi,520px);object-fit:cover;border-radius:20px;}
+.ab__portraits figure:first-child img {object-position:center 35%;}
+.ab__portraits figcaption {color:var(--ink-3);font-size:13px;padding:12px 0;}
+@container(max-width:480px){.ab__portraits {grid-template-columns:1fr;}}
